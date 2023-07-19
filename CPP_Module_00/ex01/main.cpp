@@ -1,159 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 04:48:22 by ooussaad          #+#    #+#             */
-/*   Updated: 2023/07/19 02:05:52 by ooussaad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-// #include <iostream>
-// #include <string>
-
-// class Contact
-// {
-//     private:
-//     std::string first_name;
-//     std::string last_name;
-//     std::string nickname;
-//     std::string phonenumber;
-//     std::string dark_secret;
-//     public:
-//     void fillContact();
-//     std::string truncateText(const std::string& text, int width);
-// };
-
-// class Phonebook
-// {
-//     public:
-//     static const int MAX_CONTACTS = 8;
-//     Contact contacts[MAX_CONTACTS];
-//     int len;
-//     void add_contacts();
-//     void search_contact();
-//     void display_contact();
-
-// };
-
-
-// void	Contact::fillContact()
-// {
-//     std::cout << "Please enter contact info: "<<std::endl;
-// 	std::cout << "first_name: ";
-//     getline(std::cin, first_name);
-// 	std::cout << "last_name: ";
-//     getline(std::cin, last_name);
-// 	std::cout << "nickname: ";
-//     getline(std::cin, nickname);
-// 	std::cout << "phonenumber: ";
-//     getline(std::cin, phonenumber);
-// 	std::cout << "dark_secret: ";
-//     getline(std::cin, dark_secret);
-// }
-
-// void Phonebook::add_contacts()
-// {
-//     if (len >= MAX_CONTACTS)
-//     {
-//         std::cout << "Phonebook is full. Cannot add more contacts.\n";
-//     }
-//     else
-//     {
-//         Contact newContact;
-//         newContact.fillContact();
-//         contacts[len] = newContact;
-//         len++;
-//        // std::cout << "Contact added successfully.\n";
-//        // std::cout << "this is number of contact = " << len << std::endl;
-//     }
-// }
-
-// std::string Contact::truncateText(const std::string& text, int width)
-// {
-//     if (text.length() <= width)
-//         return text;
-//     else
-//         return text.substr(0, width - 1) + ".";
-// }
-
-// void Phonebook::display_contact()
-// {
-//     if (len == 0)
-//     {
-//         std::cout << "Phonebook is empty.\n";
-//     }
-//     else
-//     {
-//         std::cout << "Contacts in Phonebook:\n";
-//         std::cout << "----------------------------------\n";
-//         std::cout << "| Index |  First Name | Last Name  | Nickname   |\n";
-//         std::cout << "----------------------------------\n";
-//         for (int i = 0; i < len; i++)
-//         {
-//             std::cout << "| ";
-//             std::cout.width(6);
-//             std::cout << std::right << i + 1 << " |";
-//             std::cout.width(12);
-//             std::cout << std::right << contacts[i].truncateText(contacts[i].first_name, 10) << " |";
-//             std::cout.width(12);
-//             std::cout << std::right << contacts[i].truncateText(contacts[i].last_name, 10) << " |";
-//             std::cout.width(12);
-//             std::cout << std::right << contacts[i].truncateText(contacts[i].nickname, 10) << " |\n";
-//         }
-//         std::cout << "----------------------------------\n";
-//     }
-// }
-
-// void Phonebook::search_contact()
-// {
-//     if (len == 0)
-//     {
-//         std::cout<< "phonebook is empty " << std::endl;
-//         return ;
-//     }
-//     int index;
-//     std::string str;
-//     std::cout << "Enter the index of the contact you want to display: ";
-//     getline(std::cin,str);
-//     if (index < 1 || index > len)
-//     {
-//         std::cout << "Invalid index. Please try again.\n";
-//     }
-//     else
-//     {
-//         std::cout << "Contact Information:\n";
-//         std::cout << "----------------------------------\n";
-//         contacts[index - 1].display_contact();
-//     }
-// }
-
-// int main()
-// {
-//     Phonebook book;
-//     book.len = 0;
-//     std::string str;
-//     while (1)
-//     {
-//         std::cout<< "entre > :";
-//         getline(std::cin,str);
-//         if (str == "ADD")
-//             book.add_contacts();
-//         else if (str == "SEARCH")
-//             book.search_contact();
-//         // std::cout << "this is number of contact = " << book.len << std::endl;
-//     }
-// }
-
-
 #include <iostream>
 #include <string>
 
 class Contact
 {
-public:
+private:
     std::string first_name;
     std::string last_name;
     std::string nickname;
@@ -161,6 +11,20 @@ public:
     std::string dark_secret;
 
 public:
+    // Setter methods
+    // void setFirstName(const std::string& firstName);
+    // void setLastName(const std::string& lastName);
+    // void setNickname(const std::string& nick);
+    // void setPhoneNumber(const std::string& phone);
+    // void setDarkSecret(const std::string& secret);
+
+    // Getter methods
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkSecret() const;
+
     void fillContact();
     void displayContact();
     std::string truncateText(const std::string& text, int width);
@@ -168,15 +32,71 @@ public:
 
 class Phonebook
 {
-public:
+private:
     static const int MAX_CONTACTS = 8;
     Contact contacts[MAX_CONTACTS];
     int length;
 
+public:
+    Phonebook()
+    {
+        length = 0;
+    }
     void addContact();
     void displayContacts();
     void searchContact();
 };
+
+// Contact class implementation
+// void Contact::setFirstName(const std::string& firstName)
+// {
+//     first_name = firstName;
+// }
+
+// void Contact::setLastName(const std::string& lastName)
+// {
+//     last_name = lastName;
+// }
+
+// void Contact::setNickname(const std::string& nick)
+// {
+//     nickname = nick;
+// }
+
+// void Contact::setPhoneNumber(const std::string& phone)
+// {
+//     phonenumber = phone;
+// }
+
+// void Contact::setDarkSecret(const std::string& secret)
+// {
+//     dark_secret = secret;
+// }
+
+std::string Contact::getFirstName() const
+{
+    return first_name;
+}
+
+std::string Contact::getLastName() const
+{
+    return last_name;
+}
+
+std::string Contact::getNickname() const
+{
+    return nickname;
+}
+
+// std::string Contact::getPhoneNumber() const
+// {
+//     return phonenumber;
+// }
+
+// std::string Contact::getDarkSecret() const
+// {
+//     return dark_secret;
+// }
 
 void Contact::fillContact()
 {
@@ -211,6 +131,7 @@ std::string Contact::truncateText(const std::string& text, int width)
         return text.substr(0, width - 1) + ".";
 }
 
+// Phonebook class implementation
 void Phonebook::addContact()
 {
     if (length >= MAX_CONTACTS)
@@ -223,7 +144,6 @@ void Phonebook::addContact()
         newContact.fillContact();
         contacts[length] = newContact;
         length++;
-        std::cout << "Contact added successfully.\n";
     }
 }
 
@@ -243,13 +163,13 @@ void Phonebook::displayContacts()
         {
             std::cout << "| ";
             std::cout.width(6);
-            std::cout << std::right << i + 1 << " |";
+            std::cout << std::left << i + 1 << " |";
             std::cout.width(12);
-            std::cout << std::right << contacts[i].truncateText(contacts[i].first_name, 10) << " |";
+            std::cout << std::right << contacts[i].truncateText(contacts[i].getFirstName(), 10) << " |";
             std::cout.width(12);
-            std::cout << std::right << contacts[i].truncateText(contacts[i].last_name, 10) << " |";
+            std::cout << std::right << contacts[i].truncateText(contacts[i].getLastName(), 10) << " |";
             std::cout.width(12);
-            std::cout << std::right << contacts[i].truncateText(contacts[i].nickname, 10) << " |\n";
+            std::cout << std::right << contacts[i].truncateText(contacts[i].getNickname(), 10) << " |\n";
         }
         std::cout << "----------------------------------\n";
     }
@@ -260,12 +180,12 @@ void Phonebook::searchContact()
     if (length == 0)
     {
         std::cout << "Phonebook is empty.\n";
-        return ;
+        return;
     }
 
     std::string index;
     std::cout << "Enter the index of the contact you want to display: ";
-    std::getline(std::cin,index);
+    std::getline(std::cin, index);
     int a = std::stoi(index);
     if (a < 1 || a > length)
     {
@@ -282,12 +202,11 @@ void Phonebook::searchContact()
 int main()
 {
     Phonebook book;
-    book.length = 0;
     std::string input;
 
     while (true)
     {
-        std::cout << "Enter a command (ADD, DISPLAY, SEARCH, QUIT): ";
+        std::cout << "Enter a command : ";
         getline(std::cin, input);
 
         if (input == "ADD")
@@ -297,10 +216,11 @@ int main()
         else if (input == "SEARCH")
         {
             book.displayContacts();
-        }
-        else if (input == "SEARCH")
-        {
             book.searchContact();
+        }
+        else if (input == "EXIT")
+        {
+            exit(0);
         }
         else
         {
