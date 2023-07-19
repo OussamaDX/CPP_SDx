@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 08:15:50 by ooussaad          #+#    #+#             */
+/*   Updated: 2023/07/19 08:43:30 by ooussaad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
 
@@ -11,19 +23,11 @@ private:
     std::string dark_secret;
 
 public:
-    // Setter methods
-    // void setFirstName(const std::string& firstName);
-    // void setLastName(const std::string& lastName);
-    // void setNickname(const std::string& nick);
-    // void setPhoneNumber(const std::string& phone);
-    // void setDarkSecret(const std::string& secret);
-
-    // Getter methods
-    std::string getFirstName() const;
-    std::string getLastName() const;
-    std::string getNickname() const;
-    std::string getPhoneNumber() const;
-    std::string getDarkSecret() const;
+    std::string getFirstName();
+    std::string getLastName();
+    std::string getNickname();
+    std::string getPhoneNumber();
+    std::string getDarkSecret();
 
     void fillContact();
     void displayContact();
@@ -35,68 +39,42 @@ class Phonebook
 private:
     static const int MAX_CONTACTS = 8;
     Contact contacts[MAX_CONTACTS];
-    int length;
+    int len;
 
 public:
     Phonebook()
     {
-        length = 0;
+        len = 0;
     }
     void addContact();
     void displayContacts();
     void searchContact();
 };
 
-// Contact class implementation
-// void Contact::setFirstName(const std::string& firstName)
-// {
-//     first_name = firstName;
-// }
-
-// void Contact::setLastName(const std::string& lastName)
-// {
-//     last_name = lastName;
-// }
-
-// void Contact::setNickname(const std::string& nick)
-// {
-//     nickname = nick;
-// }
-
-// void Contact::setPhoneNumber(const std::string& phone)
-// {
-//     phonenumber = phone;
-// }
-
-// void Contact::setDarkSecret(const std::string& secret)
-// {
-//     dark_secret = secret;
-// }
-
-std::string Contact::getFirstName() const
+std::string Contact::getFirstName()
 {
     return first_name;
 }
 
-std::string Contact::getLastName() const
+std::string Contact::getLastName()
 {
     return last_name;
 }
 
-std::string Contact::getNickname() const
+std::string Contact::getNickname()
 {
     return nickname;
 }
 
-// std::string Contact::getPhoneNumber() const
-// {
-//     return phonenumber;
-// }
+std::string Contact::getPhoneNumber()
+{
+    return phonenumber;
+}
 
-// std::string Contact::getDarkSecret() const
-// {
-//     return dark_secret;
-// }
+std::string Contact::getDarkSecret()
+{
+    return dark_secret;
+}
 
 void Contact::fillContact()
 {
@@ -125,7 +103,8 @@ void Contact::displayContact()
 
 std::string Contact::truncateText(const std::string& text, int width)
 {
-    if (text.length() <= width)
+    int a = text.length();
+    if (a <= width)
         return text;
     else
         return text.substr(0, width - 1) + ".";
@@ -134,7 +113,7 @@ std::string Contact::truncateText(const std::string& text, int width)
 // Phonebook class implementation
 void Phonebook::addContact()
 {
-    if (length >= MAX_CONTACTS)
+    if (len >= MAX_CONTACTS)
     {
         std::cout << "Phonebook is full. Cannot add more contacts.\n";
     }
@@ -142,14 +121,14 @@ void Phonebook::addContact()
     {
         Contact newContact;
         newContact.fillContact();
-        contacts[length] = newContact;
-        length++;
+        contacts[len] = newContact;
+        len++;
     }
 }
 
 void Phonebook::displayContacts()
 {
-    if (length == 0)
+    if (len == 0)
     {
         std::cout << "Phonebook is empty.\n";
     }
@@ -159,7 +138,7 @@ void Phonebook::displayContacts()
         std::cout << "----------------------------------\n";
         std::cout << "| Index |  First Name | Last Name  | Nickname   |\n";
         std::cout << "----------------------------------\n";
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < len; i++)
         {
             std::cout << "| ";
             std::cout.width(6);
@@ -177,7 +156,7 @@ void Phonebook::displayContacts()
 
 void Phonebook::searchContact()
 {
-    if (length == 0)
+    if (len == 0)
     {
         std::cout << "Phonebook is empty.\n";
         return;
@@ -187,7 +166,8 @@ void Phonebook::searchContact()
     std::cout << "Enter the index of the contact you want to display: ";
     std::getline(std::cin, index);
     int a = std::stoi(index);
-    if (a < 1 || a > length)
+    std::cout <<"this is a = " << a << std::endl;
+    if (a < 1 || a > len)
     {
         std::cout << "Invalid index. Please try again.\n";
     }
