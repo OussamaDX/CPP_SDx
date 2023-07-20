@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ooussaad <ooussaad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 01:26:43 by ooussaad          #+#    #+#             */
-/*   Updated: 2023/07/17 04:39:29 by ooussaad         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:41:29 by ooussaad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int argc,char **argv)
             {
                 std::cout<< (char)toupper(argv[i][j]);
             }
+            std::cout << " ";
         }
     	std::cout << std::endl;
     }
